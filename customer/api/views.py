@@ -1,8 +1,10 @@
+from rest_framework import status
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
                                      RetrieveAPIView,
                                      DestroyAPIView,
                                      UpdateAPIView)
+from rest_framework.response import Response
 from ..models import Customer
 
 from .serializers import CustomerSerializers
@@ -16,6 +18,15 @@ class CustomerApiView(ListAPIView):
 class CustomerCreateApi(CreateAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializers
+
+    def post(self, request):
+        print(request.data)
+        serializer = CustomerSerializers(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 
 class CustomerDetailAPIView(RetrieveAPIView):
