@@ -24,7 +24,7 @@ SECRET_KEY = 'd4jwmvyho7y(0#85w1ro(()tu9_)8qk7=*q1jn&m-3dg8g1&5v'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*','galium.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -76,8 +76,8 @@ WSGI_APPLICATION = 'galuminium.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'sqlite3.db',
     }
 }
 
