@@ -3,6 +3,8 @@ Pipfile
 .idea
 *.pyc
 sqlite3.db
+__pycache__/
+__pycache__
 **/migrations/**
 !**/migrations
 !**/migrations/__init__.py
