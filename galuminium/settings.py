@@ -76,12 +76,8 @@ WSGI_APPLICATION = 'galuminium.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'db78t23j0gpuh7',
-        'USER': 'ymyatbjrccrgda',
-        'PASSWORD': '9c6e19f9b34923af763e32e91465e61ad99f8a301364822e0fcc2769d245e012',
-        'HOST': 'ec2-107-20-198-176.compute-1.amazonaws.com',
-        'PORT': '5432',
+         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
