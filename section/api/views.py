@@ -1,8 +1,10 @@
+from rest_framework import status
 from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
                                      RetrieveAPIView,
                                      DestroyAPIView,
                                      UpdateAPIView)
+from rest_framework.response import Response
 
 from ..models import Section
 from .serializers import SectionSerializers
@@ -18,8 +20,13 @@ class SectionCreateApi(CreateAPIView):
       queryset = Section.objects.all()
       serializer_class = SectionSerializers
 
-
-
+      def post(self, request):
+          print(request.data)
+          serializer = SectionSerializers(data=request.data)
+          if serializer.is_valid():
+              serializer.save()
+              return Response(serializer.data, status=status.HTTP_201_CREATED)
+          return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class SectionDetailAPIView(RetrieveAPIView):
