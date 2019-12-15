@@ -15,6 +15,12 @@ class CustomerApiView(ListAPIView):
     serializer_class = CustomerSerializers
 
 
+def get(request):
+    print(request.data)
+    serializer = CustomerSerializers(data=request.data)
+    return Response(serializer.data)
+
+
 class CustomerCreateApi(CreateAPIView):
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializers
