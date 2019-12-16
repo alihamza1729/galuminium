@@ -4,7 +4,7 @@ from rest_framework.generics import (
     CreateAPIView,
     RetrieveAPIView,
     DestroyAPIView,
-    UpdateAPIView)
+    UpdateAPIView, ListCreateAPIView)
 
 from rest_framework.response import Response
 from ..models import Store
@@ -17,7 +17,7 @@ class StoreApiView(ListAPIView):
     serializer_class = StoreSerializers
 
 
-class StoreCreateApi(CreateAPIView):
+class StoreCreateApi(ListCreateAPIView):
     queryset = Store.objects.all()
     serializer_class = StoreSerializers
 
@@ -28,9 +28,6 @@ class StoreCreateApi(CreateAPIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-    def get(self, request, pk):
-        return self.get_object(pk)
 
 
 class StoreDetailAPIView(RetrieveAPIView):
