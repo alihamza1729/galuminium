@@ -83,6 +83,9 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+CORS_ORIGIN_REGEX_WHITELIST = [
+    r"^https://\w+\.example\.com$",
+]
 WSGI_APPLICATION = 'galuminium.wsgi.application'
 
 # Database
