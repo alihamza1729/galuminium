@@ -1,11 +1,7 @@
-
-
 from django.db import models
 
 
-
 # Create your models here.
-
 
 
 class Store(models.Model):
@@ -16,7 +12,6 @@ class Store(models.Model):
     thickness = models.FloatField()
     rate = models.FloatField()
 
-
     def __str__(self):
         return self.section
 
@@ -24,4 +19,4 @@ class Store(models.Model):
         return "/store/%s/" % self.id
 
     class Meta:
-        ordering = ["-id"]
+        ordering = ["id"]
