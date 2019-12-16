@@ -3,7 +3,7 @@ from rest_framework.generics import (ListAPIView,
                                      CreateAPIView,
                                      RetrieveAPIView,
                                      DestroyAPIView,
-                                     UpdateAPIView)
+                                     UpdateAPIView, get_object_or_404)
 from rest_framework.response import Response
 from ..models import Customer
 
@@ -33,6 +33,9 @@ class CustomerCreateApi(CreateAPIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def perform_create(self, serializer):
+        customer = get_object_or_404(Customer, id=self.request.data.get('id'))
+        return serializer.save(customer=customer)
 
 
 class CustomerDetailAPIView(RetrieveAPIView):
